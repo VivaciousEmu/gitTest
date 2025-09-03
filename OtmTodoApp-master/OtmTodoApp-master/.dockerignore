@@ -2,36 +2,35 @@
 .git
 .gitignore
 
-# Documentation
-README.md
-*.md
-dokumentaatio/
-
-# IDE files
-.idea/
-.vscode/
-*.iml
-*.ipr
-*.iws
-
 # Maven
-target/
-!target/*.jar
-.mvn/
+.mvn
 mvnw
 mvnw.cmd
+target/
+!target/*.jar
 
-# Build files
-build.ps1
-maven.zip
-apache-maven-*/
+# IDE
+.vscode/
+.idea/
+*.iml
 
-# Test files
-src/test/
-
-# CI/CD
-.github/
-
-# OS files
+# OS
 .DS_Store
 Thumbs.db
+
+# Documentation
+README.md
+dokumentaatio/
+*.md
+
+# Build scripts
+build.ps1
+validate-ci*.ps1
+
+# Config files
+checkstyle.xml
+config.properties
+skipped_files.xml
+
+# GitHub
+.github/

@@ -30,23 +30,23 @@ jobs:
           
       - name: Build with Maven
         run: mvn clean compile
+        working-directory: OtmTodoApp-master/OtmTodoApp-master
         
       - name: Run Tests
         run: mvn test
+        working-directory: OtmTodoApp-master/OtmTodoApp-master
         
       - name: Generate Coverage Report
         run: mvn jacoco:report
+        working-directory: OtmTodoApp-master/OtmTodoApp-master
         
       - name: Package Application
         run: mvn package
-        
-      - name: Copy JAR to root for Docker
-        run: |
-          mkdir -p target
-          cp target/*.jar target/
+        working-directory: OtmTodoApp-master/OtmTodoApp-master
         
       - name: Build Docker image
         run: docker build -t todoapp:${{ github.sha }} .
+        working-directory: OtmTodoApp-master/OtmTodoApp-master
         
       - name: Test Docker image
         run: |
@@ -57,20 +57,20 @@ jobs:
         if: always()
         with:
           name: test-results
-          path: target/surefire-reports/
+          path: OtmTodoApp-master/OtmTodoApp-master/target/surefire-reports/
           
       - name: Upload Coverage Reports
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: coverage-reports
-          path: target/site/jacoco/
+          path: OtmTodoApp-master/OtmTodoApp-master/target/site/jacoco/
           
       - name: Upload JAR Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: jar-artifacts
-          path: target/*.jar
+          path: OtmTodoApp-master/OtmTodoApp-master/target/*.jar
           
       - name: Comment PR with Test Results
         if: github.event_name == 'pull_request'
@@ -83,7 +83,7 @@ jobs:
             // Read test results if available
             let testSummary = '## 🧪 Test Results\n\n';
             try {
-              const surefireDir = 'target/surefire-reports';
+              const surefireDir = 'OtmTodoApp-master/OtmTodoApp-master/target/surefire-reports';
               if (fs.existsSync(surefireDir)) {
                 const files = fs.readdirSync(surefireDir).filter(f => f.endsWith('.txt'));
                 if (files.length > 0) {
