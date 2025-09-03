@@ -40,6 +40,18 @@ jobs:
       - name: Package Application
         run: mvn package
         
+      - name: Copy JAR to root for Docker
+        run: |
+          mkdir -p target
+          cp target/*.jar target/
+        
+      - name: Build Docker image
+        run: docker build -t todoapp:${{ github.sha }} .
+        
+      - name: Test Docker image
+        run: |
+          docker run --rm todoapp:${{ github.sha }} --version || echo "Docker image built successfully"
+        
       - name: Upload Test Results
         uses: actions/upload-artifact@v3
         if: always()

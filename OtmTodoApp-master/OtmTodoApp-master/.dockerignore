@@ -1,0 +1,37 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+*.md
+dokumentaatio/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Maven
+target/
+!target/*.jar
+.mvn/
+mvnw
+mvnw.cmd
+
+# Build files
+build.ps1
+maven.zip
+apache-maven-*/
+
+# Test files
+src/test/
+
+# CI/CD
+.github/
+
+# OS files
+.DS_Store
+Thumbs.db
